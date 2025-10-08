@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #2f2f2f;
+    box-sizing: border-box;
+    transition: all .3s;
+    font-family: "Poppins", sans-serif;
+}
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--backgroun     d-color);
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+body{
+    display: flex;
+    flex-direction: column;
+}
+.banner{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background: red; */
+}
+.banner>div{
+    width: 100%;
+    display: flex;
+    max-width: 89em;
+    background: blue;
+}
+.banner img{
+    width: 100%;
+    opacity: 0;
+    max-width: 55em;
+    position: absolute;
+}
+.banner img:first-child {
+    opacity: 1;
+}
+.banner img.active {
+    opacity: 1;
+    transform: scale(1.4) translateX(12.5em);
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.container>div{
+    width: 100%;
+    display: flex;
+    /* background: red; */
+    max-width: 89em;
+}
+.aside{
+    width: 100%;
+}
+.aside>div{
+    /* height: 100%; */
+}
+.aside.left{
+    display: flex;
+    height: 41em;
+    z-index: 1;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    /* background: blue; */
+}
+.aside.left>div{
+    /* background: red; */
+    width: 100%;
+    max-width: 35em;
+}
+.aside.left h2{
+    text-transform: capitalize;
+}
+.aside.right{
+    display: flex;
+    height: 41em;
+    z-index: 1;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background: #ffffffbe;
+}
+.aside.right>div{
+    width: 100%;
+    max-width: 20em;
+}
+.tittle-path h3{
+    text-transform: capitalize;
+}
+.wrapper-path{
+    gap: 10px;
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+}
+.download{
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    background: #fffffff3;
+    border-radius: 10px;
+    border: 2px solid #2f2f2f;
+    justify-content: space-between;
+    align-items: center;
+}
+.download:hover{
+    background: #d8d8d8;
+}
+.download i{
+    margin: 10px 15px;
+    font-size: 35px;
+}
+.download h3{
+    margin: 0 20px;
+    text-transform: capitalize;
+}
+.requirement{
+    height: 0;
+    overflow-y: hidden;
+}
+.requirement.active{
+    height: auto;
+    margin-top: 1em;
+}
+.requirement ul{
+    list-style: inside;
+}
+.btn-install{
+    height: 0;
+    overflow-y: hidden;
+}
+.btn-install.active{
+    height: auto;
+    margin-top: 14px;
+    margin-bottom: 10px;
+}
+.btn-install button{
+    cursor: pointer;
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    background: #1a1a1a;
+    justify-content: center;
+    align-items: center;
+}
+.btn-install button:hover{
+    background: #2d2d2d;
+}
+.btn-install h4{
+    text-transform: uppercase;
+    color: #d8d8d8;
+}
+.btn-install i{
+    font-size: 22px;
+    color: #d8d8d8;
+}
