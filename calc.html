@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/calc.css" />
+    <title>Saran & Masukan</title>
+  </head>
+  <body>
+    <main class="container">
+      <div>
+        <div class="tittle-container">
+          <h3>saran & masukan pengguna</h3>
+        </div>
+        <main class="list-saran">
+          <div id="listSaran"></div>
+        </main>
+      </div>
+    </main>
+
+    <script>
+      const listContainer = document.getElementById("listSaran");
+
+      // === Fungsi tampilkan semua saran dari localStorage ===
+      function tampilkanSaran() {
+        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
+
+        if (dataSaran.length === 0) {
+          listContainer.innerHTML =
+            '<p style="text-align:center; color:#aaa;">Belum ada saran yang dikirim.</p>';
+          return;
+        }
+
+        listContainer.innerHTML = dataSaran
+          .map(
+            (item, index) => `
+          <section class="card-saran">
+            <div>
+              <div class="txt-saran">
+                <div class="name-saran">
+                  <h3>${item.nama}</h3>
+                </div>
+                <div class="desc-saran">
+                  <h4>${item.saran}</h4>
+                </div>
+                <div class="date-saran">
+                  <h6>${item.waktu}</h6>
+                </div>
+              </div>
+              <div class="reply">
+                <a href="mailto:${item.email}">
+                  <div class="tittle-reply">
+                    <i class="bx bxl-gmail"></i>
+                    <h6>balas</h6>
+                  </div>
+                </a>
+                <button class="delete-saran" data-index="${index}">
+                  <i class="bx bxs-trash-alt"></i>
+                  <h6>hapus</h6>
+                </button>
+              </div>
+            </div>
+          </section>
+        `
+          )
+          .join("");
+
+        // Tambahkan event listener untuk tombol hapus
+        document.querySelectorAll(".delete-saran").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const index = e.currentTarget.getAttribute("data-index");
+            hapusSaran(index);
+          });
+        });
+      }
+
+      // === Fungsi hapus saran ===
+      function hapusSaran(index) {
+        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
+        if (confirm("Yakin ingin menghapus saran ini?")) {
+          dataSaran.splice(index, 1);
+          localStorage.setItem("dataSaran", JSON.stringify(dataSaran));
+          tampilkanSaran(); // refresh tampilan
+        }
+      }
+
+      // === Jalankan saat halaman dibuka ===
+      tampilkanSaran();
+    </script>
+  </body>
+</html>

@@ -42,7 +42,7 @@
                       <h4>requirements</h4>
                       <li>online</li>
                       <li>windowa 10</li>
-                      <li>space storage 24MB</li>
+                      <li>space storage 232MB</li>
                     </ul>
                   </div>
                   <div class="btn-install">
@@ -57,6 +57,9 @@
               </section>
               <section class="path">
                 <div>
+                  <div class="pra-public">
+                    <h6>sedang dalam pengembangan</h6>
+                  </div>
                   <div class="download">
                     <i class="bx bxl-android"></i>
                     <h3>android</h3>
@@ -108,6 +111,169 @@
         </aside>
       </div>
     </main>
+    <section class="main-point">
+      <div>
+        <figure class="point">
+          <div>
+            <div class="tittle-point">
+              <h4>Personalisasi Penuh</h4>
+            </div>
+            <div class="desc-point">
+              <h5>
+                MathiCalc memungkinkanmu mengatur ukuran font, tema warna, dan
+                wallpaper sesuai keinginan. Dari tampilan sederhana hingga penuh
+                warna, semuanya bisa kamu sesuaikan sesuka hati.
+              </h5>
+            </div>
+          </div>
+        </figure>
+        <figure class="point">
+          <div>
+            <div class="tittle-point">
+              <h4>Multimedia Interaktif</h4>
+            </div>
+            <div class="desc-point">
+              <h5>
+                Tidak sekadar kalkulator — kamu bisa menjadikan video biasa atau
+                video YouTube sebagai latar belakang interaktif yang membuat
+                pengalaman menghitung terasa lebih hidup dan menyenangkan.
+              </h5>
+            </div>
+          </div>
+        </figure>
+        <figure class="point">
+          <div>
+            <div class="tittle-point">
+              <h4>Fitur Pintar</h4>
+            </div>
+            <div class="desc-point">
+              <h5>
+                Dilengkapi konversi mata uang dan chatbot cerdas yang siap
+                membantumu menghitung, menjawab pertanyaan, atau memberikan
+                solusi secara cepat dan efisien.
+              </h5>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </section>
+    <section class="main-about">
+      <div>
+        <div class="about-desc">
+          <div class="tittle-about">
+            <h4>tentang MathiCalc</h4>
+          </div>
+          <div class="desc-about">
+            <p>
+              <strong>MathiCalc</strong> adalah kalkulator modern yang dirancang
+              untuk memberikan pengalaman menghitung yang lebih interaktif dan
+              personal. Selain fungsi dasar kalkulator, MathiCalc menghadirkan
+              beragam fitur menarik seperti
+              <strong>pengaturan ukuran font</strong>,
+              <strong>ubah tema warna</strong>,
+              <strong>pasang wallpaper</strong> dengan gambar favoritmu, serta
+              <strong>memutar video biasa atau video YouTube</strong> langsung
+              sebagai latar belakang. <br /><br />
+              Tak hanya itu, MathiCalc juga dilengkapi
+              <strong>fitur konversi mata uang</strong> untuk membantu
+              menghitung nilai tukar dengan cepat, dan
+              <strong>chatbot pintar</strong>
+              yang siap menemanimu dalam melakukan perhitungan atau memberi
+              bantuan kapan pun.
+              <br /><br />
+              Dengan tampilannya yang fleksibel dan fitur yang lengkap,
+              MathiCalc bukan hanya alat hitung — tapi juga ruang kerja digital
+              yang menyenangkan, kreatif, dan mudah disesuaikan sesuai gaya
+              pengguna.
+            </p>
+          </div>
+        </div>
+        <div class="about-img">
+          <img src="assets/img/browser-ori.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="main-saran">
+      <div class="wrapper-saran">
+        <div class="txt-saran">
+          <div class="tittle-saran">
+            <h5>beri saran & masukan</h5>
+            <h4>MathiCalc</h4>
+          </div>
+          <div class="desc-saran">
+            <p>
+              silahkan kasih saran & masukan kalian, terserah mau itu kekurangan
+              maupun kelebihan karena masukan dari kalian berguna banget untuk
+              perkembangan MathiCalc kami agar lebih baik.
+            </p>
+          </div>
+        </div>
+        <div class="input-saran">
+          <div class="input">
+            <h6>isi data yang valid karena ini demi perkembangan yang nyata</h6>
+            <input type="text" placeholder="Nama" />
+            <textarea
+              name="saran"
+              id="saran"
+              placeholder="Beri Saran & Masukan"
+            ></textarea>
+            <input type="email" placeholder="Email" />
+          </div>
+          <div class="btn-saran">
+            <button>kirim</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const namaInput = document.querySelector('.input input[type="text"]');
+      const emailInput = document.querySelector('.input input[type="email"]');
+      const saranInput = document.getElementById("saran");
+      const kirimBtn = document.querySelector(".btn-saran button");
+
+      kirimBtn.addEventListener("click", () => {
+        const nama = namaInput.value.trim();
+        const email = emailInput.value.trim();
+        const saran = saranInput.value.trim();
+
+        if (!nama || !email || !saran) {
+          alert("Harap isi semua data sebelum mengirim!");
+          return;
+        }
+
+        // Format tanggal: "12 November 2025"
+        const date = new Date();
+        const options = { day: "numeric", month: "long", year: "numeric" };
+        const formattedDate = date.toLocaleDateString("id-ID", options);
+
+        // Simpan data ke localStorage
+        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
+        dataSaran.push({ nama, email, saran, waktu: formattedDate });
+        localStorage.setItem("dataSaran", JSON.stringify(dataSaran));
+
+        // Reset input
+        namaInput.value = "";
+        emailInput.value = "";
+        saranInput.value = "";
+
+        alert("Terima kasih atas saran dan masukan kamu!");
+      });
+
+      // === Shortcut Admin: Ctrl + Shift + / ===
+      document.addEventListener("keydown", function (e) {
+        // cek jika tombol Ctrl + Shift + /
+        if (e.ctrlKey && e.shiftKey && e.key === "?") {
+          e.preventDefault();
+          const confirmAdmin = confirm(
+            "Apakah kamu ingin membuka halaman admin saran?"
+          );
+          if (confirmAdmin) {
+            window.location.href = "calc.html"; // arahkan ke halaman admin
+          }
+        }
+      });
+    </script>
+
     <script src="js/main.js"></script>
   </body>
 </html>

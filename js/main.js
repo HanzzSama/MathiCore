@@ -48,7 +48,7 @@ downloads.forEach((download, index) => {
     // Jika tidak ada yang aktif → kembalikan gambar dan teks default
     if (!anyActive && images[0]) {
       images[0].style.opacity = "1";
-      titleLeft.textContent = "desktop";
+      titleLeft.textContent = "windows";
     }
   });
 });

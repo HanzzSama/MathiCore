@@ -2,6 +2,7 @@
 *{
     margin: 0;
     padding: 0;
+    font-weight: 400;
     text-decoration: none;
     color: #2f2f2f;
     box-sizing: border-box;
@@ -81,6 +82,7 @@ body{
     max-width: 35em;
 }
 .aside.left h2{
+    font-weight: 650;
     text-transform: capitalize;
 }
 .aside.right{
@@ -98,13 +100,31 @@ body{
     max-width: 20em;
 }
 .tittle-path h3{
+    font-weight: 650;
     text-transform: capitalize;
 }
 .wrapper-path{
     gap: 10px;
+    position: relative;
     margin-top: 2em;
     display: flex;
     flex-direction: column;
+}
+.pra-public{
+    display: flex;
+    height: 3.7em;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border: 2px solid #f54141;
+    backdrop-filter: blur(5px);
+    background: #ffffff8a;
+    width: 100%;
+}
+.pra-public h6{
+    color: #e96b6b;
+    text-transform: capitalize;
 }
 .download{
     display: flex;
@@ -124,6 +144,7 @@ body{
     font-size: 35px;
 }
 .download h3{
+    font-weight: 550;
     margin: 0 20px;
     text-transform: capitalize;
 }
@@ -164,10 +185,170 @@ body{
     background: #2d2d2d;
 }
 .btn-install h4{
+    font-weight: 550;
     text-transform: uppercase;
     color: #d8d8d8;
 }
 .btn-install i{
     font-size: 22px;
     color: #d8d8d8;
+}
+.main-point{
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+}
+.main-point>div{
+    width: 100%;
+    display: grid;
+    max-width: 89em;
+    gap: 15px;
+    /* background: red; */
+    grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
+}
+.point{
+    display: flex;
+    border-radius: 6px;
+    /* background: blue; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.point>div{
+    margin: 10px 25px;
+}
+.tittle-point h4{
+    font-weight: 550;
+    text-transform: capitalize;
+}
+.desc-point{
+    margin-top: 1em;
+}
+.main-about{
+    display: flex;
+    margin-top: 5em;
+    background: #2b211c;
+    justify-content: center;
+}
+.main-about>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 89em;
+}
+.about-desc{
+    margin: 30px 0;
+    /* background: red; */
+}
+.tittle-about h4{
+    font-size: 21px;
+    color: #d7a86e;
+    font-weight: 650;
+    text-transform: capitalize;
+}
+.desc-about{
+    margin-top: 2em;
+    max-width: 40em;
+}
+.desc-about p{
+    line-height: 25px;
+    text-align: justify;
+    font-size: 14px;
+    color: #e7c9b9;
+}
+.desc-about strong{
+    font-weight: 450;
+    color: #ece3dd;
+}
+.about-img{
+    display: flex;
+    align-items: center;
+    max-width: 40em;
+    border-left: 4px solid #3f3029;
+}
+.about-img img{
+    width: 100%;
+}
+.main-saran{
+    display: flex;
+    height: 30em;
+    align-items: center;
+    margin-top: 5em;
+    /* background: #2b211c; */
+    justify-content: center;
+}
+.main-saran>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 89em;
+}
+.txt-saran{
+    max-width: 40em;
+}
+.tittle-saran h4{
+    text-align: center;
+    font-size: 3em;
+    line-height: 40px;
+    text-transform: capitalize;
+    font-weight: 550;
+}
+.tittle-saran h5{
+    letter-spacing: 2.47px;
+    text-align: center;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-weight: 450;
+}
+.desc-saran{
+    margin-top: 3em;
+}
+.desc-saran p{
+    text-align: justify;
+    font-size: 15px;
+}
+.input-saran{
+    width: 100%;
+    max-width: 40em;
+    /* background: red; */
+}
+.input{
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.input input{
+    width: 100%;
+    outline: none;
+    font-size: 15px;
+    font-weight: 450;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: 1px solid #d8d8d8;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.input textarea{
+    width: 100%;
+    outline: none;
+    font-size: 15px;
+    font-weight: 450;
+    padding: 10px 25px;
+    border-radius: 10px;
+    resize: none;
+    height: 8em;
+    border: 1px solid #d8d8d8;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.input h6{
+    color: #858585;
+}
+.btn-saran{
+    margin-top: 1em;
+}
+.btn-saran button{
+    background: #2d2d2d;
+    color: #d8d8d8;
+    font-weight: 550;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    border-radius: 20px;
 }
