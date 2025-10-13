@@ -88,6 +88,20 @@
         }
       }
 
+      // === Shortcut Admin: Ctrl + Shift + / ===
+      document.addEventListener("keydown", function (e) {
+        // cek jika tombol Ctrl + Shift + /
+        if (e.ctrlKey && e.shiftKey && e.key === "?") {
+          e.preventDefault();
+          const confirmAdmin = confirm(
+            "Apakah kamu ingin membuka halaman utama?"
+          );
+          if (confirmAdmin) {
+            window.location.href = "index.html"; // arahkan ke halaman admin
+          }
+        }
+      });
+
       // === Jalankan saat halaman dibuka ===
       tampilkanSaran();
     </script>

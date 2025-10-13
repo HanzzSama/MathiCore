@@ -36,7 +36,7 @@ body{
     width: 100%;
     display: flex;
     max-width: 89em;
-    background: blue;
+    /* background: blue; */
 }
 .banner img{
     width: 100%;
@@ -63,9 +63,6 @@ body{
 }
 .aside{
     width: 100%;
-}
-.aside>div{
-    /* height: 100%; */
 }
 .aside.left{
     display: flex;
@@ -225,11 +222,12 @@ body{
 .main-about{
     display: flex;
     margin-top: 5em;
-    background: #2b211c;
+    background: #12141a;
     justify-content: center;
 }
 .main-about>div{
     width: 100%;
+    margin: 2.7em 0;
     display: flex;
     justify-content: space-between;
     max-width: 89em;
@@ -240,7 +238,7 @@ body{
 }
 .tittle-about h4{
     font-size: 21px;
-    color: #d7a86e;
+    color: #5dade2;
     font-weight: 650;
     text-transform: capitalize;
 }
@@ -252,7 +250,7 @@ body{
     line-height: 25px;
     text-align: justify;
     font-size: 14px;
-    color: #e7c9b9;
+    color: #76a6ca;
 }
 .desc-about strong{
     font-weight: 450;
@@ -262,10 +260,11 @@ body{
     display: flex;
     align-items: center;
     max-width: 40em;
-    border-left: 4px solid #3f3029;
+    /* border-left: 4px solid #3f3029; */
 }
 .about-img img{
     width: 100%;
+    border-radius: 8px;
 }
 .main-saran{
     display: flex;
@@ -344,6 +343,7 @@ body{
     margin-top: 1em;
 }
 .btn-saran button{
+    border: none;
     background: #2d2d2d;
     color: #d8d8d8;
     font-weight: 550;
@@ -351,4 +351,90 @@ body{
     text-transform: uppercase;
     padding: 10px 40px;
     border-radius: 20px;
+}
+@media screen and (max-width: 1500px) {
+    .main-point>div{
+        margin: 0 25px;
+    }
+    .main-about>div{
+        margin: 2.7em 25px;
+    }
+    .main-saran>div{
+        margin: 0 25px;
+    }
+}
+@media screen and (max-width: 1290px) {
+    .container>div{
+        margin: 0 25px;
+    }
+    .main-point{
+        margin: 0 25px;
+    }
+    .main-about>div{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .main-saran{
+        margin-top: 8em;
+    }
+    .main-saran>div{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .input-saran{
+        margin-top: 3em;
+    }
+}
+@media screen and (max-width: 900px) {
+    .banner{
+        width: 100%;
+        /* position: relative; */
+        overflow-x: hidden;
+        /* background: red; */
+    }
+    .banner>div{
+        background: red;
+    }
+    .banner img.active {
+        opacity: 1;
+        transform: scale(1.4);
+    }
+    .aside.left{
+        height: 30em;
+    }
+    .aside.left>div{
+        display: flex;
+    }
+    .aside.left h2{
+        padding: 8px 20px;
+        border-radius: 8px;
+        background: #ffffff8a;
+        backdrop-filter: blur(3px);
+    }
+    .aside.right{
+        height: 30em;
+    }
+    .container>div{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 450px) {
+    .aside.left{
+        height: 17em;
+    }
+    .main-point{
+        margin-top: 1em;
+    }
+    .main-point>div{
+        grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
+    }
+    .main-saran{
+        margin-top: 9em;
+    }
+    .input-saran{
+        margin-top: 5em;
+    }
+    .input input,textarea{
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    }
 }
