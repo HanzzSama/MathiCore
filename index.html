@@ -28,7 +28,7 @@
         <aside class="aside right">
           <div>
             <article class="tittle-path">
-              <h3>download MathiCalc 2.0</h3>
+              <h3>download MathiCalc 2.1</h3>
             </article>
             <div class="wrapper-path">
               <section class="path">
@@ -41,7 +41,7 @@
                     <ul>
                       <h4>requirements</h4>
                       <li>online</li>
-                      <li>windowa 10</li>
+                      <li>windows 10</li>
                       <li>space storage 232MB</li>
                     </ul>
                   </div>
@@ -210,68 +210,63 @@
             </p>
           </div>
         </div>
-        <div class="input-saran">
+        <form id="formSaran" class="input-saran">
           <div class="input">
-            <h6>isi data yang valid karena ini demi perkembangan yang nyata</h6>
-            <input type="text" placeholder="Nama" />
-            <textarea
-              name="saran"
-              id="saran"
-              placeholder="Beri Saran & Masukan"
-            ></textarea>
-            <input type="email" placeholder="Email" />
+            <h6>Isi data yang valid karena ini demi perkembangan yang nyata</h6>
+            <input type="text" id="nama" placeholder="Nama" />
+            <textarea id="saran" placeholder="Beri Saran & Masukan"></textarea>
+            <input type="email" id="email" placeholder="Email" />
           </div>
           <div class="btn-saran">
-            <button>kirim</button>
+            <button type="submit">Kirim</button>
           </div>
-        </div>
+        </form>
       </div>
     </section>
-    <script>
-      const namaInput = document.querySelector('.input input[type="text"]');
-      const emailInput = document.querySelector('.input input[type="email"]');
-      const saranInput = document.getElementById("saran");
-      const kirimBtn = document.querySelector(".btn-saran button");
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-      kirimBtn.addEventListener("click", () => {
-        const nama = namaInput.value.trim();
-        const email = emailInput.value.trim();
-        const saran = saranInput.value.trim();
+      const firebaseConfig = {
+        apiKey: "AIzaSyBZniBUYSoX0KX4CtFHebD7PKiTrmfUwZw",
+        authDomain: "mathicore-121104.firebaseapp.com",
+        projectId: "mathicore-121104",
+        storageBucket: "mathicore-121104.firebasestorage.app",
+        messagingSenderId: "492202337513",
+        appId: "1:492202337513:web:f5698db6a366adf82dbc78",
+        measurementId: "G-QDTXYP5LKM",
+      };
 
-        if (!nama || !email || !saran) {
-          alert("Harap isi semua data sebelum mengirim!");
-          return;
-        }
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-        // Format tanggal: "12 November 2025"
-        const date = new Date();
-        const options = { day: "numeric", month: "long", year: "numeric" };
-        const formattedDate = date.toLocaleDateString("id-ID", options);
+      const form = document.getElementById("formSaran");
 
-        // Simpan data ke localStorage
-        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
-        dataSaran.push({ nama, email, saran, waktu: formattedDate });
-        localStorage.setItem("dataSaran", JSON.stringify(dataSaran));
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        // Reset input
-        namaInput.value = "";
-        emailInput.value = "";
-        saranInput.value = "";
+        const nama = document.getElementById("nama").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const saran = document.getElementById("saran").value.trim();
+        const waktu = new Date().toLocaleString("id-ID");
 
-        alert("Terima kasih atas saran dan masukan kamu!");
-      });
+        try {
+          await addDoc(collection(db, "saran"), {
+            nama,
+            email,
+            saran,
+            waktu,
+          });
 
-      // === Shortcut Admin: Ctrl + Shift + / ===
-      document.addEventListener("keydown", function (e) {
-        // cek jika tombol Ctrl + Shift + /
-        if (e.ctrlKey && e.shiftKey && e.key === "?") {
-          e.preventDefault();
-          const confirmAdmin = confirm(
-            "Apakah kamu ingin membuka halaman admin saran?"
-          );
-          if (confirmAdmin) {
-            window.location.href = "calc.html"; // arahkan ke halaman admin
-          }
+          alert("Terima kasih! Saran kamu sudah dikirim ✅");
+          form.reset();
+        } catch (err) {
+          console.error("Gagal kirim saran:", err);
+          alert("Gagal mengirim saran, coba lagi nanti.");
         }
       });
     </script>

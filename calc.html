@@ -17,28 +17,57 @@
           <h3>saran & masukan pengguna</h3>
         </div>
         <main class="list-saran">
-          <div id="listSaran"></div>
+          <div id="saranContainer"></div>
         </main>
       </div>
     </main>
 
-    <script>
-      const listContainer = document.getElementById("listSaran");
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        deleteDoc,
+        doc,
+      } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
-      // === Fungsi tampilkan semua saran dari localStorage ===
-      function tampilkanSaran() {
-        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
+      // Konfigurasi Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyBZniBUYSoX0KX4CtFHebD7PKiTrmfUwZw",
+        authDomain: "mathicore-121104.firebaseapp.com",
+        projectId: "mathicore-121104",
+        storageBucket: "mathicore-121104.firebasestorage.app",
+        messagingSenderId: "492202337513",
+        appId: "1:492202337513:web:f5698db6a366adf82dbc78",
+        measurementId: "G-QDTXYP5LKM",
+      };
 
-        if (dataSaran.length === 0) {
-          listContainer.innerHTML =
-            '<p style="text-align:center; color:#aaa;">Belum ada saran yang dikirim.</p>';
+      // Inisialisasi Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      const saranContainer = document.getElementById("saranContainer");
+
+      // Ambil data dari Firestore
+      async function loadSaran() {
+        saranContainer.innerHTML = "<p>Mengambil data...</p>";
+        const querySnapshot = await getDocs(collection(db, "saran"));
+        saranContainer.innerHTML = "";
+
+        if (querySnapshot.empty) {
+          saranContainer.innerHTML = "<p>Tidak ada saran tersedia.</p>";
           return;
         }
 
-        listContainer.innerHTML = dataSaran
-          .map(
-            (item, index) => `
-          <section class="card-saran">
+        let index = 0;
+        querySnapshot.forEach((docSnap) => {
+          const item = docSnap.data();
+          const docId = docSnap.id;
+
+          const section = document.createElement("section");
+          section.classList.add("card-saran");
+          section.innerHTML = `
             <div>
               <div class="txt-saran">
                 <div class="name-saran">
@@ -52,58 +81,38 @@
                 </div>
               </div>
               <div class="reply">
-                <a href="mailto:${item.email}">
-                  <div class="tittle-reply">
-                    <i class="bx bxl-gmail"></i>
-                    <h6>balas</h6>
-                  </div>
-                </a>
-                <button class="delete-saran" data-index="${index}">
+                <a href="mailto:${item.email}?subject=Terima kasih atas saran Anda untuk MathiCalc&body=Halo ${item.nama},%0D%0A%0D%0ATerima kasih banyak atas saran dan masukan yang telah Anda berikan kepada tim kami. Kami sangat menghargai waktu dan perhatian Anda dalam membantu pengembangan MathiCalc agar menjadi lebih baik lagi.%0D%0A%0D%0ASemoga Anda tetap mendukung kami di versi berikutnya! 😊%0D%0A%0D%0ASalam hangat,%0D%0ATim MathiCalc">
+                <div class="tittle-reply">
+                  <i class="bx bxl-gmail"></i>
+                  <h6>balas</h6>
+                </div>
+              </a>
+                <button class="delete-saran" data-id="${docId}">
                   <i class="bx bxs-trash-alt"></i>
                   <h6>hapus</h6>
                 </button>
               </div>
             </div>
-          </section>
-        `
-          )
-          .join("");
+          `;
+
+          saranContainer.appendChild(section);
+          index++;
+        });
 
         // Tambahkan event listener untuk tombol hapus
         document.querySelectorAll(".delete-saran").forEach((btn) => {
-          btn.addEventListener("click", (e) => {
-            const index = e.currentTarget.getAttribute("data-index");
-            hapusSaran(index);
+          btn.addEventListener("click", async (e) => {
+            const id = e.currentTarget.getAttribute("data-id");
+            if (confirm("Yakin ingin menghapus saran ini?")) {
+              await deleteDoc(doc(db, "saran", id));
+              alert("Saran berhasil dihapus!");
+              loadSaran(); // refresh daftar
+            }
           });
         });
       }
 
-      // === Fungsi hapus saran ===
-      function hapusSaran(index) {
-        const dataSaran = JSON.parse(localStorage.getItem("dataSaran")) || [];
-        if (confirm("Yakin ingin menghapus saran ini?")) {
-          dataSaran.splice(index, 1);
-          localStorage.setItem("dataSaran", JSON.stringify(dataSaran));
-          tampilkanSaran(); // refresh tampilan
-        }
-      }
-
-      // === Shortcut Admin: Ctrl + Shift + / ===
-      document.addEventListener("keydown", function (e) {
-        // cek jika tombol Ctrl + Shift + /
-        if (e.ctrlKey && e.shiftKey && e.key === "?") {
-          e.preventDefault();
-          const confirmAdmin = confirm(
-            "Apakah kamu ingin membuka halaman utama?"
-          );
-          if (confirmAdmin) {
-            window.location.href = "index.html"; // arahkan ke halaman admin
-          }
-        }
-      });
-
-      // === Jalankan saat halaman dibuka ===
-      tampilkanSaran();
+      loadSaran();
     </script>
   </body>
 </html>

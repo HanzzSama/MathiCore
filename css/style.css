@@ -386,6 +386,15 @@ body{
     }
 }
 @media screen and (max-width: 900px) {
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        position: relative;
+    }
+    * {
+        box-sizing: border-box;
+    }
     .banner{
         width: 100%;
         /* position: relative; */
